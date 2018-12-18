@@ -20,6 +20,29 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$data["people"] = [
+			[
+				"name" => "Leo",
+				"email" => "leografx@gmail.com",
+				"limit" => "25.00"
+			],
+		[
+				"name" => "Ana",
+				"email" => "anagarcia_1964@yahoo.com",
+				"limit" => "15.00"
+		],
+			[
+				"name" => "Jerry",
+				"email" => "ihouse@gmail.com",
+				"limit" => "35.00"
+	],
+			[
+				"name" => "Gregory",
+				"email" => "greg@gmail.com",
+				"limit" => "40.00"
+			]
+		]
+		;
+		$this->load->view('welcome_message', $data);
 	}
 }

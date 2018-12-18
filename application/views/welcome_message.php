@@ -64,10 +64,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
 	}
+	div .text-right {
+		/* margin-left : 50px; */
+		text-align : right;
+	}
 	</style>
 </head>
 <body>
 <h1>Secret Santa</h1>
+<table>
+	<thead>
+		<th>Name</th>
+		<th>Limit</th>
+	</thead>
+	<?php foreach($people as $p): ?>
 
+		<tbody>
+			<tr>
+				<td width="100"><?= $p['name']; ?></td>
+				<td class="text-right"><?=  $p['limit'];  ?><td> 
+			</tr>
+		</tbody>
+
+	<?php endforeach; ?>
+</table>
 </body>
 </html>
