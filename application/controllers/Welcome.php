@@ -43,6 +43,14 @@ class Welcome extends CI_Controller {
 			]
 		]
 		;
+		$d = ["a","b","c"];
+		print_r($this->shuffleList($data['people']));
+		// print_r($d);
 		$this->load->view('welcome_message', $data);
+	}
+
+	private function shuffleList ($myArray) {
+		uksort($myArray, function ($a, $b) {return mt_rand(-10, 10);});
+		return $myArray;
 	}
 }
