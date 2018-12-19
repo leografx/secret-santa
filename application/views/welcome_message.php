@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	body {
 		background-color: #fff;
 		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		font: 14px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
 	}
 
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 20px 0 0 0;
 	}
 
-	#container {
+	.container {
 		margin: 10px;
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
@@ -68,25 +68,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		/* margin-left : 50px; */
 		text-align : right;
 	}
+	form {
+		text-align : center;
+	}
+	.card {
+		position:relative;
+		font-size: 1.5em;
+		margin: 10px;
+		width: 300px;
+		height: 100px;
+		border: 1px solid silver;
+		text-align:center;
+		line-height:40px;
+		/* background:yellow; */
+		background-image: url('<?=base_url() ?>images/nameholder.jpg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+		float:left;
+	}
+	.delete-btn {
+		background:red;
+		color:white;
+		font-weight:700;
+		position: absolute;
+		top:0px;
+		right:0px;
+	}
+
+	.clearfix {
+		overflow: auto;
+	}
+
+	input {
+		line-height:30px;
+		margin:20px;
+		padding:5px;
+		font-size: 16px;
+	}
+
 	</style>
 </head>
 <body>
+<div class="container">
+<div class="clearfix">
 <h1>Secret Santa</h1>
-<table>
-	<thead>
-		<th>Name</th>
-		<th>Limit</th>
-	</thead>
-	<?php foreach($people as $p): ?>
-
-		<tbody>
-			<tr>
-				<td width="100"><?= $p['name']; ?></td>
-				<td class="text-right"><?=  $p['limit'];  ?><td> 
-			</tr>
-		</tbody>
-
-	<?php endforeach; ?>
-</table>
+<form action="<?= base_url() ?>welcome/postParticipant" method="POST">
+<label for="name">Name</label>
+	<input id="name" name="name"/>
+	<label for="email">Email</label>
+	<input id="email" size="40" name="email"/>
+	<label for="limit">Limit</label>
+	<input id="limit" size="8" name="limit"/>
+	<input class="btn" type="submit" value="+add">
+</form>
+	<?php if($data): ?>
+		<?php foreach($data as $p): ?>
+			<div class="card">
+			<form action="<?= base_url() ?>/welcome/delete/<?= $p->id ?>" method="POST">
+			<button class="delete-btn" type="submit">x</button>
+			</form>
+				<h4><?= $p->name; ?> </h4>
+			</div>
+		<?php endforeach; ?>
+	<?php endif; ?>
+	</div>
+	</div>
 </body>
 </html>
